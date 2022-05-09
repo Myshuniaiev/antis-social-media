@@ -2,63 +2,110 @@
 @import "mixins";
 @import "normalize";
 
-/* navigation */
+/* components & pages */
 @import "./components/navigation/navigation.scss";
 
-/* main styles */
+/* font-family */
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&display=swap");
+
+/* common styling */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: $MulishFont;
+  padding: 0;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  padding: constant(safe-area-inset-top) constant(safe-area-inset-right)
+    constant(safe-area-inset-bottom) constant(safe-area-inset-left);
+}
+
+body > iframe {
+  display: none !important;
+}
+
+html,
+body {
+  overflow: hidden;
+  margin: 0;
+}
+
+body > iframe {
+  display: none !important;
+}
 
 body {
+  height: 100%;
   background-color: $background-dark;
 }
-body,
-#root,
-.application-wrapper {
+
+ul {
+  list-style: none;
+}
+
+/* main layout (main) */
+.main-layout {
+  display: flex;
+  height: 100%;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+@include mq-tablet {
+  .main-layout {
+    flex-direction: column;
+  }
+
+  #main {
+    height: 94.5%;
+    height: calc(100% - #{55px});
+  }
+
+  .navigation {
+    order: 4;
+  }
+}
+
+#main {
   width: 100%;
   height: 100%;
+  padding: 40px 30px;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
-.application-wrapper {
+.herder {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-}
-
-.content-wrapper {
-  width: 85%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  margin: 0 30px;
-  .herder {
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  flex-wrap: nowrap;
+  border-bottom: 1px solid #23272c;
+  .profile {
+    margin-left: 30px;
     display: flex;
     flex-direction: row;
+    align-content: center;
     align-items: center;
-    justify-content: flex-end;
-    padding: 40px 0px 30px 0px;
-    flex-wrap: nowrap;
-    border-bottom: 1px solid #23272c;
-    .profile {
-      margin-left: 30px;
-      display: flex;
-      flex-direction: row;
-      align-content: center;
-      align-items: center;
-      justify-content: center;
-      &-nickname {
-        margin-left: 15px;
-        margin-right: 40px;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 20px;
-        color: #ffffff;
-      }
-      &-icon {
-        width: 32px;
-        height: 32px;
-        border-radius: 100%;
-        background-color: antiquewhite;
-      }
+    justify-content: center;
+    &-nickname {
+      margin-left: 15px;
+      margin-right: 40px;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 20px;
+      color: #ffffff;
+    }
+    &-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 100%;
+      background-color: antiquewhite;
     }
   }
 }

@@ -39,3 +39,48 @@
     @content;
   }
 }
+
+@mixin backdrop-overlay {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transition: 0.3s;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin times-icon($size: 17px, $thickness: 2px, $color: white) {
+  @include flex-center;
+  position: relative;
+  cursor: pointer;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+  &::before,
+  &::after {
+    width: $size;
+    height: $thickness;
+    border-radius: $thickness;
+    background-color: $color;
+  }
+}
